@@ -1,0 +1,44 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* Accesibilidad: enlace para saltar al contenido */
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 0.5rem;
+  transform: translateY(-200%);
+  transition: transform 120ms ease-in-out;
+  z-index: 9999;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* Enlaces sociales deshabilitados (cuando no hay URL real) */
+.social-link.is-disabled {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.social-link.is-disabled svg {
+  pointer-events: none;
+}

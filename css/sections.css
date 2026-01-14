@@ -1,0 +1,751 @@
+/* ==========================
+   HERO 50/50 ALTURA COMPLETA
+   ========================== */
+.page-hero{
+  position: relative;
+  isolation: isolate;
+}
+
+.page-hero::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.58));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.page-hero .hero-content,
+.page-hero .hero-mini-carousel,
+.page-hero .hero-logo-full{
+  position: relative;
+  z-index: 2;
+}
+
+.hero-bg{
+  position: absolute;
+  inset: 0;
+  background-image: var(--hero-bg-image);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 600ms ease;
+  filter: brightness(.96);
+}
+
+.hero-bg.is-visible{
+  opacity: 1;
+}
+
+.hero{
+  padding: 0 !important;
+  /* Altura contenida para un hero mas bajo */
+  min-height: clamp(140px, 24vh, 240px);
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+.hero .container{
+  max-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.hero-grid{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  min-height: inherit;
+  align-items: stretch;
+}
+
+.hero-left,
+.hero-right{
+  position: relative;
+  min-height: inherit;
+  overflow: hidden;
+}
+
+/* Columna izquierda con fondo verde institucional y division 50/50 */
+.hero-left{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: clamp(8px, 2vw, 18px);
+  padding: clamp(8px, 1.4vw, 16px);
+  background: var(--color-white); /* fondo claro uniforme para acompañar el logo */
+  color: var(--color-primary);
+  z-index: 2;
+}
+
+/* Division de la columna izquierda para que logo y texto quepan en un hero mas bajo */
+.hero-logo-full{
+  flex: 0 0 auto; /* deja que el contenido defina la altura y evita recorte */
+  display: flex !important;
+  align-items: center !important; /* center vertically within top area */
+  justify-content: center !important;
+  padding: clamp(6px, 1.2vw, 12px) clamp(8px, 2vw, 24px) 0 clamp(8px, 2vw, 24px) !important;
+  background: transparent !important;
+  overflow: visible !important; /* allow slight overflow/overlap */
+  margin-top: 0;
+  position: relative !important;
+  width: 100% !important;
+  pointer-events: auto !important;
+  z-index: 10 !important;
+}
+
+/* Logo controlado para evitar recortes */
+.hero-logo-full img{
+  position: relative !important;
+  z-index: 12 !important; /* lower than carousel (35) */
+  max-height: 80px !important;
+  max-width: 160px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  transform: none !important;
+  transition: opacity 180ms ease;
+  opacity: 0.98 !important;
+}
+
+.hero-logo-full img:hover{
+  transform: none !important;
+}
+
+/* Ajuste del logo pequeno para mejor legibilidad */
+.hero-logo-full img.logo-small{
+  max-width: 120px !important;
+  max-height: 60px !important;
+  transform: none !important;
+  margin-top: 0 !important;
+  opacity: 0.98 !important;
+}
+/* En mobile hero-logo y hero-content se apilan de forma natural */
+@media (max-width: 900px){
+  .hero-content{ padding: clamp(20px, 4vw, 56px) !important; }
+}
+
+@media (max-width: 900px){
+  .hero-logo-full{
+    padding-left: clamp(12px, 6vw, 24px) !important;
+    padding-right: clamp(12px, 6vw, 24px) !important;
+  }
+  .hero-logo-full img { max-width: 95% !important; transform: none !important; }
+  .hero-content{ margin-left: 0 !important; }
+}
+
+/* El texto del hero fluye debajo del logo y mantiene legibilidad */
+.hero-content{
+  flex: 1 1 auto;
+  margin-left: 0 !important;
+  width: 100%;
+  position: relative !important;
+  z-index: 30 !important; /* mantiene el texto sobre el logo si hay superposicion */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(18px, 4vw, 56px) clamp(20px, 3vw, 60px) clamp(12px, 4vw, 40px) !important;
+  pointer-events: auto;
+  text-align: left;
+}
+
+.hero-text{
+  max-width: 620px;
+  color: var(--color-primary);
+  text-shadow: none;
+}
+
+.hero-text h1{
+  font-size: clamp(22px, 3.8vw, 48px);
+  line-height: 1.08;
+  margin: 0 0 12px 0;
+}
+
+.hero-text p{
+  font-size: clamp(13px, 1.6vw, 16px);
+  opacity: .96;
+  margin: 0 0 8px 0;
+}
+
+/* Tweak for very small screens */
+@media (max-width: 480px){
+  .hero-text h1{ font-size: clamp(18px, 6vw, 32px); }
+  .hero-text p{ font-size: clamp(12px, 3.5vw, 14px); }
+  .hero-ctas .btn{ font-size: 14px; padding: 10px 14px; }
+}
+
+.hero-ctas{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+
+.hero-kpis{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.kpi-item{
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(0,0,0,.28);
+  backdrop-filter: blur(4px);
+}
+
+.kpi-number{
+  font-weight: 800;
+  font-size: 16px;
+  display: block;
+}
+
+.kpi-label{
+  font-size: 12px;
+  opacity: .9;
+}
+
+/* ==========================
+   MINI CAROUSEL
+   - Imagen principal: contain (sin recorte)
+   - Fondo: blur con la misma imagen
+   ========================== */
+.hero-mini-carousel{
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: inherit;
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  background: var(--color-secondary);
+  z-index: 35 !important; /* front-most within hero */
+  pointer-events: auto !important;
+}
+
+/* Fondo desenfocado */
+.hero-mini-bg{
+  position: absolute;
+  inset: 0;
+  background-image: var(--mini-src);
+  background-size: cover;
+  background-position: center;
+  filter: blur(16px);
+  transform: scale(1.12);
+  opacity: 0.75;
+  transition: opacity 200ms ease;
+}
+
+/* Imagen principal sin zoom exagerado, ajustada para hero mas pequeno */
+.hero-mini-img{
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;       /* evita recorte excesivo */
+  object-position: center !important;
+  display: block !important;
+  padding: 0;
+  transition: opacity 200ms ease, visibility 0s;
+  opacity: 0; /* hidden until loaded to avoid showing alt text */
+}
+.hero-mini-img.is-loaded{ opacity: 1 !important; }
+
+
+.hero-mini-carousel .is-fading{
+  opacity: 0.15;
+}
+
+/* El carrusel queda por encima del logo aunque crezca */
+.hero-right{
+  overflow: visible !important; /* allow carousel to be visible when overlapped */
+  z-index: 30 !important;
+}
+
+
+/* Responsive: apilar */
+@media (max-width: 900px){
+  .hero{
+    min-height: auto;
+  }
+
+  .hero-grid{
+    grid-template-columns: 1fr !important;
+    min-height: auto;
+  }
+
+  .hero-left{
+    min-height: 200px;
+  }
+
+  .hero-right{
+    min-height: 150px;
+  }
+
+  .hero-mini-carousel{
+    min-height: 150px;
+  }
+
+  .hero-kpis{
+    grid-template-columns: 1fr;
+  }
+
+  /* En pantallas pequenas se revierte el 50/50 y se ajustan espacios */
+  .hero-logo-full,
+  .hero-content{
+    flex: 0 0 auto;
+    padding-left: clamp(12px, 6vw, 24px) !important;
+    padding-right: clamp(12px, 6vw, 24px) !important;
+  }
+}
+
+/* ==========================
+   Resto de secciones
+   ========================== */
+.section{
+  padding: 64px 0;
+}
+
+.section-alt{
+  background: var(--color-secondary);
+}
+
+.section-header{
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.section-header h2{
+  margin: 0 0 10px;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+
+.section-header p{
+  margin: 0 auto;
+  max-width: 720px;
+  opacity: .85;
+}
+
+.section-logo{
+  margin: 0 0 18px;
+}
+.section-logo .logo-img{
+  height: 40px;
+}
+
+.team-section .card{
+  border: 2px solid var(--color-brand);
+}
+.team-section .cards-grid{
+  grid-template-columns: 1fr;
+  max-width: 360px;
+}
+
+.team-layout{
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.3fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.team-gallery{
+  background: #f7fbf8;
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.2);
+  padding: 12px;
+  max-height: 520px;
+  overflow-y: auto;
+}
+
+.team-gallery-grid{
+  display: grid;
+  gap: 10px;
+}
+
+.team-gallery-grid img{
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center 20%;
+  background: #ffffff;
+  border-radius: 10px;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  transform-origin: center;
+  position: relative;
+  z-index: 0;
+}
+
+.team-gallery-grid img:hover{
+  transform: scale(1.6);
+  z-index: 2;
+  box-shadow: 0 16px 30px rgba(0,0,0,0.25);
+}
+
+.image-lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 5000;
+}
+.image-lightbox img{
+  width: min(88vw, 1200px);
+  height: min(82vh, 820px);
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.35);
+}
+.image-lightbox .lightbox-close{
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: #ffffff;
+  border: 2px solid var(--color-brand);
+  color: #111111;
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+.image-lightbox .lightbox-close:hover,
+.image-lightbox .lightbox-close:focus-visible{
+  background: var(--color-brand);
+  color: #ffffff;
+}
+
+#afiliacion .btn-outline{
+  background: #ffffff;
+  border-color: var(--color-brand);
+  color: #111111;
+}
+#afiliacion .btn-outline:hover,
+#afiliacion .btn-outline:focus-visible{
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Layout ordenado para la seccion Historia */
+.section-historia .pillar.historia{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 1.75rem 2rem;
+  background: #f7fbf8;
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.2);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  align-items: center;
+}
+.section-historia .pillar.historia:hover{
+  transform: translateY(-6px);
+  border-color: var(--color-brand);
+  box-shadow: 0 24px 52px rgba(0,0,0,0.28);
+}
+
+.section-historia .pillar-text h2{
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.section-historia .pillar-text p{
+  margin: 0 0 12px 0;
+  text-align: justify;
+  word-spacing: normal;
+  font-size: 1.2rem;
+  line-height: 1.75;
+}
+
+.section-historia .history-side{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-historia .history-hero img{
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  max-height: 260px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 10px 22px -16px rgba(0,0,0,0.25);
+}
+
+.history-team{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.history-team .team-card{
+  background: #f7fbf8;
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.history-team .team-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(0,0,0,0.16);
+}
+
+.contact-card{
+  background: #f7fbf8;
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.2);
+  padding: 1.75rem 2rem;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.contact-card:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 24px 52px rgba(0,0,0,0.28);
+}
+.contact-card .btn-outline{
+  background: #ffffff;
+  border-color: var(--color-brand);
+  color: #111111;
+}
+.contact-card .btn-outline:hover,
+.contact-card .btn-outline:focus-visible{
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.history-team .team-card img{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  max-height: 280px;
+  object-fit: contain;
+  background: #ffffff;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.history-team .team-card h3{
+  margin: 0;
+}
+
+/* Layout ordenado para la seccion Nosotros */
+.section-nosotros .about-pillars{
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.section-nosotros .pillar{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  padding: 1.75rem 2rem;
+  background: #f7fbf8;
+  border: 2px solid var(--color-brand);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.2);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.section-nosotros .pillar:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 24px 52px rgba(0,0,0,0.28);
+}
+
+.section-nosotros .pillar:nth-child(even){
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.section-nosotros .pillar:nth-child(even) .pillar-text{
+  order: 2;
+}
+
+.section-nosotros .pillar:nth-child(even) .pillar-media{
+  order: 1;
+}
+
+.section-nosotros .pillar-text h2{
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.section-nosotros .pillar-text p{
+  margin: 0;
+  text-align: left;
+  word-spacing: normal;
+}
+
+.section-nosotros .pillar-media img{
+  width: 100%;
+  height: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 22px -16px rgba(0,0,0,0.25);
+}
+
+/* Diseno especifico para las tarjetas de Nosotros */
+.section-nosotros .cards-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-items: stretch;
+}
+
+.section-nosotros .card p,
+.section-nosotros .card h3{
+  text-align: center;
+}
+.section-nosotros .card h3{
+  font-size: 1.6rem;
+}
+.section-nosotros .card p{
+  text-align: justify;
+  color: #2b2b2b;
+  font-size: 1.3rem;
+  line-height: 1.75;
+  max-width: 34rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align-last: center;
+}
+.section-nosotros .card .btn-outline{
+  background: #ffffff;
+  border-color: var(--color-brand);
+  color: #111111;
+}
+.section-nosotros .card .btn-outline:hover,
+.section-nosotros .card .btn-outline:focus-visible{
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: #ffffff;
+}
+
+.section-nosotros .card ul {
+  text-align: left;
+  color: #2b2b2b;
+  list-style: none;
+  padding-left: 0;
+  margin: 0 auto;
+  display: inline-block;
+  font-size: 1.28rem;
+  line-height: 1.7;
+}
+.section-nosotros .card ul li{
+  position: relative;
+  padding-left: 1.4rem;
+  margin: 0.35rem 0;
+}
+.section-nosotros .card ul li::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 0.55rem;
+  height: 0.3rem;
+  border-left: 2px solid var(--color-brand);
+  border-bottom: 2px solid var(--color-brand);
+  transform: rotate(-45deg);
+}
+
+.section-nosotros .cards-grid article.card {
+  max-width: none;
+  width: 100%;
+}
+.section-nosotros .card {
+  border: 2px solid var(--color-brand);
+  min-height: auto;
+  padding: 2rem 2.25rem;
+  max-width: none;
+  justify-content: flex-start;
+  gap: 1.1rem;
+}
+
+.cards-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  align-items: stretch;
+  justify-items: center; /* center cards inside the grid */
+}
+
+.news-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  max-width: none;
+  margin: 0;
+}
+
+.news-date{
+  display: inline-block;
+  font-size: 12px;
+  opacity: .8;
+  margin-bottom: 6px;
+}
+
+.card-link{
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.afiliacion-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px){
+  .section-historia .pillar.historia{
+    grid-template-columns: 1fr;
+  }
+
+  .team-layout{
+    grid-template-columns: 1fr;
+  }
+  .team-gallery{
+    max-height: 260px;
+  }
+
+  .cards-grid{
+    grid-template-columns: 1fr;
+  }
+  .section-nosotros .cards-grid{
+    grid-template-columns: 1fr;
+  }
+  .news-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Header y footer integrados en verde */
+.site-header{
+  background: var(--color-brand);
+  color: var(--color-white);
+}
+.site-header .main-nav a{
+  color: var(--color-white);
+}
+.site-footer{
+  background: var(--color-brand);
+  color: var(--color-white);
+  margin-top: 0;
+}
+.site-footer a{
+  color: #e8f7eb;
+}

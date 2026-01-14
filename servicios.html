@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Servicios de SAG Cauca para el gremio: acompañamiento, representación, información, formación y articulación institucional." name="description"/>
+<title>Servicios al Gremio - SAG Cauca</title>
+<link href="css/base.css" rel="stylesheet"/>
+<link href="css/utilities.css" rel="stylesheet"/>
+<link href="css/layout.css" rel="stylesheet"/>
+<link href="css/components.css" rel="stylesheet"/>
+<link href="css/sections.css" rel="stylesheet"/>
+<meta content="SAG Cauca" property="og:site_name"/><meta content="website" property="og:type"/><meta content="Servicios al Gremio - SAG Cauca" property="og:title"/><meta content="Servicios de SAG Cauca para el gremio: acompañamiento, representación, información, formación y articulación institucional." property="og:description"/><meta content="public/img/logosag2.jpg" property="og:image"/><meta content="summary_large_image" name="twitter:card"/><meta content="#0b1f3a" name="theme-color"/><meta content="index, follow" name="robots"/><link href="public/img/logosagc.jpg" rel="icon" type="image/jpeg"/></head>
+<body>
+<div id="site-header"></div>
+<main id="main-content">
+<!-- Hero institucional con logo en tamaño controlado -->
+<section class="hero page-hero">
+<div class="container hero-grid">
+<div class="hero-left">
+<div class="hero-logo-full">
+<img alt="SAG Cauca" decoding="async" height="80" loading="lazy" src="public/img/logosag2.jpg" width="160"/>
+</div>
+<div class="hero-content">
+<div class="hero-text">
+<h1>Formulario de afiliación</h1>
+<p>
+                  Envía tus datos para iniciar tu proceso de
+                  afiliación a la SAG Cauca.
+                </p>
+<div class="hero-kpis">
+<div class="kpi-item">
+<span class="kpi-number">30%</span>
+<span class="kpi-label">menos consultas básicas</span>
+</div>
+<div class="kpi-item">
+<span class="kpi-number">+20%</span>
+<span class="kpi-label">asistencia a eventos</span>
+</div>
+<div class="kpi-item">
+<span class="kpi-number">500</span>
+<span class="kpi-label">visitas mensuales meta</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hero-right">
+<div aria-label="Galería SAG Cauca" class="hero-mini-carousel">
+<img alt="Producción agropecuaria en el Cauca" data-src="public/img/cafe1.jpg"/>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<div class="container two-cols">
+<div>
+<h2>Contacta a la SAG Cauca</h2>
+<p>
+              Completa el formulario y elige si deseas enviar por correo o
+              WhatsApp. No almacenamos tus datos.
+            </p>
+<p>
+              Teléfono: <a href="tel:+573155692130">315 569 2130</a><br/>
+              Correo: <a href="mailto:sagcauca@gmail.com">sagcauca@gmail.com</a>
+</p>
+</div>
+<div class="contact-card">
+<h2>Formulario</h2>
+<form aria-describedby="contactStatus contactNote" class="contact-form" id="contactForm" novalidate="">
+<label for="nombre">Nombre completo</label>
+<input autocomplete="name" id="nombre" maxlength="80" minlength="3" name="nombre" placeholder="Escribe tu nombre y apellidos" required="" type="text"/>
+<label for="correo">Correo electrónico</label>
+<input autocomplete="email" id="correo" inputmode="email" maxlength="120" name="correo" placeholder="tucorreo@ejemplo.com" required="" type="email"/>
+<label for="canal">¿Cómo quieres enviar el mensaje?</label>
+<select id="canal" name="canal" required="">
+<option selected="" value="correo">
+                  Correo electrónico
+                </option>
+<option value="whatsapp">WhatsApp</option>
+</select>
+<label for="mensaje">Mensaje</label>
+<textarea id="mensaje" maxlength="1000" minlength="10" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte" required="" rows="6"></textarea>
+<button class="btn btn-accent" type="submit">
+                Enviar mensaje
+              </button>
+<p aria-live="polite" class="form-status" id="contactStatus"></p>
+<p class="form-note" id="contactNote">
+                La información se usa solo para iniciar tu afiliación. Si no se abre tu
+                cliente de correo o WhatsApp, copia el mensaje y envíalo manualmente.
+              </p>
+</form>
+</div>
+</div>
+</section>
+</main>
+<div id="site-footer"></div>
+<script defer="" src="js/includes.js"></script>
+<script defer="" src="js/main.js"></script>
+</body>
+</html>
